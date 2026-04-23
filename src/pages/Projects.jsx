@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Lightbox from '../components/Lightbox'
+import { publicUrl } from '../utils/publicUrl'
 
 const Projects = () => {
   const [pageLoading, setPageLoading] = useState(true)
@@ -58,7 +59,7 @@ const Projects = () => {
                 <div className={`media media-vertical ${verticalPlaying ? 'playing' : ''}`} role="img" aria-label="Vertical video placeholder">
                   <video
                     ref={verticalRef}
-                    src={encodeURI('/starboyy.mp4')}
+                    src={encodeURI(publicUrl('starboyy.mp4'))}
                     controls
                     playsInline
                     muted
@@ -71,7 +72,7 @@ const Projects = () => {
                   </div>
                   <div
                     className="media-expand"
-                    onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI('/starboyy.mp4')) }}
+                    onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI(publicUrl('starboyy.mp4'))) }}
                     role="button"
                     aria-label="Open vertical video in lightbox"
                     tabIndex={0}
@@ -86,7 +87,7 @@ const Projects = () => {
                 <div className={`media media-horizontal ${horizontalPlaying ? 'playing' : ''}`} role="img" aria-label="Horizontal video placeholder">
                   <video
                     ref={horizontalRef}
-                    src={encodeURI('/typhography dikit2_052853.mp4')}
+                    src={encodeURI(publicUrl('typhography dikit2_052853.mp4'))}
                     controls
                     playsInline
                     muted
@@ -99,7 +100,7 @@ const Projects = () => {
                   </div>
                   <div
                     className="media-expand"
-                    onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI('/typhography dikit2_052853.mp4')) }}
+                    onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI(publicUrl('typhography dikit2_052853.mp4'))) }}
                     role="button"
                     aria-label="Open horizontal video in lightbox"
                     tabIndex={0}
@@ -114,15 +115,15 @@ const Projects = () => {
             <h2>Banners</h2>
             <div className="banner-row">
               <figure className="project-item">
-                <div className="media media-banner" onClick={() => openLightbox(encodeURI('/Lembar Kerja 1.png'))} role="button" tabIndex={0}>
-                  <img src={encodeURI('/Lembar Kerja 1.png')} alt="Lembar Kerja 1" />
+                <div className="media media-banner" onClick={() => openLightbox(encodeURI(publicUrl('Lembar Kerja 1.png')))} role="button" tabIndex={0}>
+                  <img src={encodeURI(publicUrl('Lembar Kerja 1.png'))} alt="Lembar Kerja 1" />
                 </div>
                 <figcaption className="media-caption">Lembar Kerja 1 — 2:1</figcaption>
               </figure>
 
               <figure className="project-item">
-                <div className="media media-banner" onClick={() => openLightbox(encodeURI('/Artboard 4.jpg'))} role="button" tabIndex={0}>
-                  <img src={encodeURI('/Artboard 4.jpg')} alt="Artboard 4" />
+                <div className="media media-banner" onClick={() => openLightbox(encodeURI(publicUrl('Artboard 4.jpg')))} role="button" tabIndex={0}>
+                  <img src={encodeURI(publicUrl('Artboard 4.jpg'))} alt="Artboard 4" />
                 </div>
                 <figcaption className="media-caption">Artboard 4 — 2:1</figcaption>
               </figure>
@@ -132,8 +133,8 @@ const Projects = () => {
             <div className="insta-grid">
               {feedFiles.map((f, i) => (
                 <figure className="project-item" key={f}>
-                  <div className="media media-square" onClick={() => openLightbox(encodeURI('/' + f))} role="button" tabIndex={0}>
-                    <img src={encodeURI('/' + f)} alt={`Feed ${i + 1}`} />
+                  <div className="media media-square" onClick={() => openLightbox(encodeURI(publicUrl(f)))} role="button" tabIndex={0}>
+                    <img src={encodeURI(publicUrl(f))} alt={`Feed ${i + 1}`} />
                   </div>
                   <figcaption className="media-caption">Feed {i + 1}</figcaption>
                 </figure>

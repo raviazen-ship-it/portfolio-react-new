@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
+import { publicUrl } from '../utils/publicUrl'
 
 const About = () => {
   const [pageLoading, setPageLoading] = useState(true)
@@ -16,7 +17,7 @@ const About = () => {
       <main className={`about-section ${!pageLoading ? 'main-show' : ''}`}>
       <section className="about-container">
           <div className="about-left">
-            <img src="/ray.jpg" alt="Ray Raharja Santoso" className="profile-image" />
+            <img src={publicUrl('ray.jpg')} alt="Ray Raharja Santoso" className="profile-image" />
           </div>
 
         <div className="about-right">
