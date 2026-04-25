@@ -506,7 +506,7 @@ body::before {
 
 /* Projects media layout and aspect-ratio helpers */
 .projects-media h2 { margin-top: 1.25rem; color: var(--gold-400); font-size: 1.05rem; }
-.video-row { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1rem; align-items: start; }
+.video-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; align-items: start; }
 .banner-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 0.5rem; }
 .insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.85rem; margin-top: 0.5rem; }
 .reels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 260px)); gap: 1rem; justify-content: center; margin-top: 0.5rem; }
@@ -563,10 +563,6 @@ body::before {
   .banner-row { grid-template-columns: 1fr; }
   .video-row { grid-template-columns: 1fr; }
   .reels-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; }
-}
-
-@media (min-width: 1200px) {
-  .video-row { grid-template-columns: 1fr 1.6fr; }
 }
 
 /* Lightbox styles */
