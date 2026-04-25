@@ -17,12 +17,21 @@ const About = () => {
       <main className={`about-section ${!pageLoading ? 'main-show' : ''}`}>
       <section className="about-container">
           <div className="about-left">
-            <img src={publicUrl('ray.jpg')} alt="Ray Raharja Santoso" className="profile-image" />
+            <div className="about-photo">
+              <img src={publicUrl('ray.jpg')} alt="Ray Raharja Santoso" className="profile-image" />
+            </div>
           </div>
 
         <div className="about-right">
           <h1>Ray Raharja Santoso</h1>
           <h3>Graphic Designer</h3>
+
+          <div className="about-meta" aria-label="Design specialties">
+            <span className="about-chip">E-commerce Banners</span>
+            <span className="about-chip">Product Visuals</span>
+            <span className="about-chip">Campaign Creative</span>
+            <span className="about-chip">Short-form Video</span>
+          </div>
 
           <p>
             I design e-commerce visuals including banners, product pictures, and campaign imagery to help
@@ -55,7 +64,7 @@ const About = () => {
             </div>
           </div>
 
-          <Link to="/" className="cta-button" style={{display:'inline-block', marginTop:'1.25rem'}}>Back to Home</Link>
+          <Link to="/" className="cta-button about-cta">Back to Home</Link>
         </div>
       </section>
     </main>
