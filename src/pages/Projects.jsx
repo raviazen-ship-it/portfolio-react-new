@@ -33,6 +33,11 @@ const Projects = () => {
   const [verticalPlaying, setVerticalPlaying] = useState(false)
   const [horizontalPlaying, setHorizontalPlaying] = useState(false)
 
+  const instaReelFiles = [
+    'instasave.website_AQMftacslt5l2Kxi6eBpP9JCKlt98gGtCCiMLddDiID-hNCUN4OnsFlRlkdD_J8b1GMZIia_rhH7gyL5bE4wP1J2QrP8PbhU8vgCjmo.mp4',
+    'instasave.website_AQMHRTqOrE4EOme9SKeEBA97dMfNoCpnmbtdY1UCPVRzzr7eUd67GCmuBF0nKb7_RX2SJ6iAiZumxSUtYuRM1qpCxZgVkcFxwO9orNM.mp4',
+  ]
+
   const toggleVertical = () => {
     const v = verticalRef.current
     if (!v) return
@@ -113,6 +118,33 @@ const Projects = () => {
                 </div>
                 <figcaption className="media-caption">Horizontal Video — 16:9 (typhography dikit2)</figcaption>
               </figure>
+            </div>
+
+            <h2>Instagram Reels</h2>
+            <div className="video-row">
+              {instaReelFiles.map((file, i) => (
+                <figure className="project-item" key={file}>
+                  <div className="media media-vertical" role="img" aria-label={`Instagram reel ${i + 1}`}>
+                    <video
+                      src={encodeURI(publicUrl(file))}
+                      controls
+                      playsInline
+                      muted
+                      loop
+                    />
+                    <div
+                      className="media-expand"
+                      onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI(publicUrl(file))) }}
+                      role="button"
+                      aria-label={`Open Instagram reel ${i + 1} in lightbox`}
+                      tabIndex={0}
+                    >
+                      <i className="fa-solid fa-expand" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                  <figcaption className="media-caption">Reel {i + 1}</figcaption>
+                </figure>
+              ))}
             </div>
 
             <h2>Banners</h2>
