@@ -17,7 +17,10 @@ const Projects = () => {
     'agustus_upscaled_compressed_023915.jpg',
     'erigo x jkt_040944.png',
     'night_053403.png',
-    'peyek_022620.png'
+    'peyek_022620.png',
+    'asdw-01.png',
+    'sjw-Recovered.png',
+    'ss_102626.png'
   ]
 
   const [lightboxSrc, setLightboxSrc] = useState(null)
