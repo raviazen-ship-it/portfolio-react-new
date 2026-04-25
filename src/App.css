@@ -347,7 +347,21 @@ body::before {
 
 /* About page styles */
 .about-section {
+  position: relative;
   padding: 4rem 1rem;
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  inset: -25% -10%;
+  background:
+    radial-gradient(closest-side at 18% 20%, rgba(218,165,32,0.10), transparent 22%),
+    radial-gradient(closest-side at 80% 75%, rgba(128,0,0,0.08), transparent 26%);
+  filter: blur(44px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .about-container {
@@ -367,7 +381,7 @@ body::before {
   width: 320px;
   height: 320px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.06);
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
   filter: none !important;
@@ -393,15 +407,32 @@ body::before {
   color: rgba(255,255,255,0.85);
   line-height: 1.6;
   max-width: 60ch;
+  font-size: 1.02rem;
+}
+
+.about-tagline {
+  margin: 0.25rem 0 0.9rem;
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+  letter-spacing: 0.15px;
 }
 
 .about-meta { display: flex; gap: 0.55rem; flex-wrap: wrap; margin: 0.85rem 0 1.1rem; }
-.about-chip { padding: 0.45rem 0.75rem; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); font-weight: 700; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
+.about-chip {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.2px;
+}
 .about-cta { margin-top: 1.5rem; margin-bottom: 0.25rem; }
 
 .skills {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
@@ -438,7 +469,26 @@ body::before {
 }
 
 /* Additional polish for About page visuals */
-.about-container { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 2rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+.about-container {
+  position: relative;
+  overflow: hidden;
+  background: rgba(17,24,39,0.55);
+  padding: 2.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 14px 50px rgba(0,0,0,0.65);
+}
+.about-container::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 35%, rgba(218,165,32,0.10), transparent 25%),
+    radial-gradient(circle at 75% 70%, rgba(128,0,0,0.08), transparent 30%);
+  filter: blur(50px);
+  z-index: -1;
+  pointer-events: none;
+}
 .about-left .profile-image { transition: transform .35s ease, box-shadow .35s ease; transform-origin: center; }
 .about-left .profile-image:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
 .about-right h4 { margin-top: 1.25rem; color: rgba(218,165,32,0.95); letter-spacing: 0.4px; }
@@ -446,6 +496,11 @@ body::before {
 .skills li { background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.03); }
 .contact-link i { font-size: 18px; line-height: 1; }
 .contact-link { color: white; }
+
+@media (max-width: 900px) {
+  .about-container { padding: 1.6rem 1.25rem; border-radius: 14px; }
+  .about-right p { font-size: 1rem; }
+}
 
 /* About page animations and interaction polish */
 .about-left .profile-image { animation: floatTilt 6s ease-in-out infinite; will-change: transform; }

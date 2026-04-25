@@ -26,6 +26,8 @@ const About = () => {
           <h1>Ray Raharja Santoso</h1>
           <h3>Graphic Designer</h3>
 
+          <p className="about-tagline">Neon-lean visuals, sharp typography, and product storytelling that converts.</p>
+
           <div className="about-meta" aria-label="Design specialties">
             <span className="about-chip">E-commerce Banners</span>
             <span className="about-chip">Product Visuals</span>
