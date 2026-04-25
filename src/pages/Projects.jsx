@@ -85,7 +85,7 @@ const Projects = () => {
             <h2>Video Projects</h2>
             <div className="video-row">
               <figure className="project-item">
-                <div className={`media media-vertical ${verticalPlaying ? 'playing' : ''}`} role="img" aria-label="Vertical video placeholder">
+                <div className={`media media-vertical media-video ${verticalPlaying ? 'playing' : ''}`} role="img" aria-label="Vertical video placeholder">
                   <video
                     ref={verticalRef}
                     preload="metadata"
@@ -117,7 +117,7 @@ const Projects = () => {
               </figure>
 
               <figure className="project-item">
-                <div className={`media media-horizontal ${horizontalPlaying ? 'playing' : ''}`} role="img" aria-label="Horizontal video placeholder">
+                <div className={`media media-horizontal media-video ${horizontalPlaying ? 'playing' : ''}`} role="img" aria-label="Horizontal video placeholder">
                   <video
                     ref={horizontalRef}
                     preload="metadata"
@@ -153,7 +153,7 @@ const Projects = () => {
             <div className="reels-grid">
               {instaReelFiles.map((file, i) => (
                 <figure className="project-item" key={file}>
-                  <div className="media media-vertical" role="img" aria-label={`Instagram reel ${i + 1}`}>
+                  <div className="media media-vertical media-video" role="img" aria-label={`Instagram reel ${i + 1}`}>
                     <video
                       preload="metadata"
                       controls

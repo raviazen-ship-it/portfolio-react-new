@@ -620,6 +620,14 @@ body::before {
   filter: none !important;
 }
 
+/* Videos on Projects page: size the card to the actual video (no forced cropping) */
+.media-video { aspect-ratio: auto !important; }
+.media-video > video {
+  height: auto;
+  object-fit: contain;
+  background: rgba(0,0,0,0.55);
+}
+
 /* Center the Projects title and intro paragraph */
 .projects-container h1 { text-align: center; margin-bottom: 0.25rem; }
 .projects-container .projects-intro { text-align: center; margin: 0 auto 1rem; max-width: 70ch; color: rgba(255,255,255,0.9); }
