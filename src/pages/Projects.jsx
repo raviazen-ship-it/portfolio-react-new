@@ -25,12 +25,17 @@ const Projects = () => {
 
   const [lightboxSrc, setLightboxSrc] = useState(null)
   const [missingMedia, setMissingMedia] = useState({})
+  const [mediaErrors, setMediaErrors] = useState({})
 
   const openLightbox = (path) => setLightboxSrc(path)
   const closeLightbox = () => setLightboxSrc(null)
 
   const markMissing = (file) => {
     setMissingMedia((prev) => (prev[file] ? prev : { ...prev, [file]: true }))
+  }
+
+  const markError = (file) => {
+    setMediaErrors((prev) => (prev[file] ? prev : { ...prev, [file]: true }))
   }
 
   const verticalRef = useRef(null)
@@ -44,7 +49,15 @@ const Projects = () => {
   ]
 
   const visibleFeedFiles = feedFiles.filter((f) => !missingMedia[f])
-  const visibleReelFiles = instaReelFiles.filter((f) => !missingMedia[f])
+
+  const videoErrorHint = (file) => (
+    <div className="media-error">
+      Video error.{' '}
+      <a href={encodeURI(publicUrl(file))} target="_blank" rel="noreferrer">
+        Open file
+      </a>
+    </div>
+  )
 
   const toggleVertical = () => {
     const v = verticalRef.current
@@ -71,51 +84,53 @@ const Projects = () => {
           <div className="projects-media">
             <h2>Video Projects</h2>
             <div className="video-row">
-              {!missingMedia['starboyy.mp4'] && (
-                <figure className="project-item">
-                  <div className={`media media-vertical ${verticalPlaying ? 'playing' : ''}`} role="img" aria-label="Vertical video placeholder">
-                    <video
-                      ref={verticalRef}
-                      src={encodeURI(publicUrl('starboyy.mp4'))}
-                      controls
-                      playsInline
-                      muted
-                      loop
-                      onPlay={() => setVerticalPlaying(true)}
-                      onPause={() => setVerticalPlaying(false)}
-                      onError={() => markMissing('starboyy.mp4')}
-                    />
+              <figure className="project-item">
+                <div className={`media media-vertical ${verticalPlaying ? 'playing' : ''}`} role="img" aria-label="Vertical video placeholder">
+                  <video
+                    ref={verticalRef}
+                    preload="metadata"
+                    controls
+                    playsInline
+                    muted
+                    loop
+                    onPlay={() => setVerticalPlaying(true)}
+                    onPause={() => setVerticalPlaying(false)}
+                    onError={() => markError('jw sli_021931.mp4')}
+                  >
+                    <source src={encodeURI(publicUrl('jw sli_021931.mp4'))} type="video/mp4" />
+                  </video>
                     <div className="media-overlay" onClick={toggleVertical} role="button" aria-label="Toggle vertical video">
                       <i className={verticalPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play'} aria-hidden="true"></i>
                     </div>
                     <div
                       className="media-expand"
-                      onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI(publicUrl('starboyy.mp4'))) }}
+                      onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI(publicUrl('jw sli_021931.mp4'))) }}
                       role="button"
                       aria-label="Open vertical video in lightbox"
                       tabIndex={0}
                     >
                       <i className="fa-solid fa-expand" aria-hidden="true"></i>
                     </div>
-                  </div>
-                  <figcaption className="media-caption">Vertical Video — 9:16 (starboyy)</figcaption>
-                </figure>
-              )}
+                    {mediaErrors['jw sli_021931.mp4'] && videoErrorHint('jw sli_021931.mp4')}
+                </div>
+                <figcaption className="media-caption">Vertical Video — 9:16 (jw sli_021931)</figcaption>
+              </figure>
 
-              {!missingMedia['typhography dikit2_052853.mp4'] && (
-                <figure className="project-item">
-                  <div className={`media media-horizontal ${horizontalPlaying ? 'playing' : ''}`} role="img" aria-label="Horizontal video placeholder">
-                    <video
-                      ref={horizontalRef}
-                      src={encodeURI(publicUrl('typhography dikit2_052853.mp4'))}
-                      controls
-                      playsInline
-                      muted
-                      loop
-                      onPlay={() => setHorizontalPlaying(true)}
-                      onPause={() => setHorizontalPlaying(false)}
-                      onError={() => markMissing('typhography dikit2_052853.mp4')}
-                    />
+              <figure className="project-item">
+                <div className={`media media-horizontal ${horizontalPlaying ? 'playing' : ''}`} role="img" aria-label="Horizontal video placeholder">
+                  <video
+                    ref={horizontalRef}
+                    preload="metadata"
+                    controls
+                    playsInline
+                    muted
+                    loop
+                    onPlay={() => setHorizontalPlaying(true)}
+                    onPause={() => setHorizontalPlaying(false)}
+                    onError={() => markError('typhography dikit2_052853.mp4')}
+                  >
+                    <source src={encodeURI(publicUrl('typhography dikit2_052853.mp4'))} type="video/mp4" />
+                  </video>
                     <div className="media-overlay" onClick={toggleHorizontal} role="button" aria-label="Toggle horizontal video">
                       <i className={horizontalPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play'} aria-hidden="true"></i>
                     </div>
@@ -128,25 +143,27 @@ const Projects = () => {
                     >
                       <i className="fa-solid fa-expand" aria-hidden="true"></i>
                     </div>
-                  </div>
-                  <figcaption className="media-caption">Horizontal Video — 16:9 (typhography dikit2)</figcaption>
-                </figure>
-              )}
+                    {mediaErrors['typhography dikit2_052853.mp4'] && videoErrorHint('typhography dikit2_052853.mp4')}
+                </div>
+                <figcaption className="media-caption">Horizontal Video — 16:9 (typhography dikit2)</figcaption>
+              </figure>
             </div>
 
             <h2>Instagram Reels</h2>
             <div className="reels-grid">
-              {visibleReelFiles.map((file, i) => (
+              {instaReelFiles.map((file, i) => (
                 <figure className="project-item" key={file}>
                   <div className="media media-vertical" role="img" aria-label={`Instagram reel ${i + 1}`}>
                     <video
-                      src={encodeURI(publicUrl(file))}
+                      preload="metadata"
                       controls
                       playsInline
                       muted
                       loop
-                      onError={() => markMissing(file)}
-                    />
+                      onError={() => markError(file)}
+                    >
+                      <source src={encodeURI(publicUrl(file))} type="video/mp4" />
+                    </video>
                     <div
                       className="media-expand"
                       onClick={(e) => { e.stopPropagation(); openLightbox(encodeURI(publicUrl(file))) }}
@@ -156,6 +173,7 @@ const Projects = () => {
                     >
                       <i className="fa-solid fa-expand" aria-hidden="true"></i>
                     </div>
+                    {mediaErrors[file] && videoErrorHint(file)}
                   </div>
                   <figcaption className="media-caption">Reel {i + 1}</figcaption>
                 </figure>
