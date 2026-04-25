@@ -516,15 +516,15 @@ body::before {
 .media:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
 .media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.15)); pointer-events: none; }
 
-.media-vertical { aspect-ratio: 9 / 16; min-height: 320px; max-width: 360px; margin: 0 auto; background-image: linear-gradient(135deg, rgba(128,0,0,0.18), rgba(218,165,32,0.06)); }
+.media-vertical { aspect-ratio: 9 / 16; width: min(360px, 100%); margin: 0 auto; background-image: linear-gradient(135deg, rgba(128,0,0,0.18), rgba(218,165,32,0.06)); }
 .media-horizontal { aspect-ratio: 16 / 9; width: 100%; background-image: linear-gradient(135deg, rgba(218,165,32,0.06), rgba(128,0,0,0.12)); }
 .media-banner { aspect-ratio: 2 / 1; width: 100%; background-image: linear-gradient(90deg, rgba(128,0,0,0.12), rgba(218,165,32,0.06)); min-height: 120px; }
 .media-square { aspect-ratio: 1 / 1; background-image: linear-gradient(135deg, rgba(218,165,32,0.04), rgba(128,0,0,0.06)); }
 
-.media-overlay { position: absolute; display:flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:999px; background: rgba(0,0,0,0.45); color: white; font-size: 18px; }
+.media-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display:flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:999px; background: rgba(0,0,0,0.45); color: white; font-size: 18px; }
 .media-overlay i { transform: translateX(2px); }
 
-.media-caption { margin-top: 0.5rem; text-align: left; color: rgba(255,255,255,0.9); font-weight: 700; }
+.media-caption { margin-top: 0.5rem; text-align: left; color: rgba(255,255,255,0.9); font-weight: 700; font-size: 0.95rem; }
 
 @media (max-width: 900px) {
   .video-row { grid-template-columns: 1fr; }
@@ -553,7 +553,7 @@ body::before {
 
 /* overlay pointer and hide when playing */
 .media-overlay { cursor: pointer; transition: opacity .2s ease, transform .15s ease; }
-.media.playing .media-overlay { opacity: 0; transform: scale(.85); pointer-events: none; }
+.media.playing .media-overlay { opacity: 0; transform: translate(-50%, -50%) scale(.85); pointer-events: none; }
 
 /* Avoid aggressive hover zoom (it overlaps and looks messy) */
 .insta-grid .project-item { overflow: hidden; }
@@ -563,6 +563,19 @@ body::before {
   .banner-row { grid-template-columns: 1fr; }
   .video-row { grid-template-columns: 1fr; }
   .reels-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; }
+  .projects-section, .contact-page { padding: 3rem 0.75rem; }
+  .media-caption { text-align: center; }
+  .media-vertical { width: min(280px, 100%); }
+  .media-expand { width: 38px; height: 38px; top: 8px; right: 8px; }
+}
+
+@media (max-width: 420px) {
+  .reels-grid { grid-template-columns: 1fr; }
+  .media-vertical { width: min(260px, 100%); }
+}
+
+@media (hover: none) {
+  .media:hover { transform: none; box-shadow: 0 12px 30px rgba(0,0,0,0.55); }
 }
 
 /* Lightbox styles */
