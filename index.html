@@ -12,6 +12,63 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        var shown = false;
+        function show(title, details) {
+          if (shown) return;
+          shown = true;
+          var el = document.createElement('div');
+          el.id = '__fatal_overlay__';
+          el.style.cssText =
+            'position:fixed;inset:0;z-index:99999;background:#0b0f19;color:#fff;padding:16px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;';
+          var inner = document.createElement('div');
+          inner.style.cssText =
+            'max-width:860px;margin:0 auto;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;background:rgba(255,255,255,.04);';
+          var h = document.createElement('h1');
+          h.textContent = title || 'App failed to load';
+          h.style.cssText = 'font-size:18px;margin:0 0 10px 0;';
+          var p = document.createElement('pre');
+          p.textContent = details || '';
+          p.style.cssText =
+            'white-space:pre-wrap;word-break:break-word;margin:0;color:rgba(255,255,255,.85);font-size:13px;line-height:1.45;';
+          var tip = document.createElement('div');
+          tip.textContent =
+            'Tip: if this mentions a missing /assets/... file, the GitHub Pages base path is wrong or the deploy is serving an older build.';
+          tip.style.cssText = 'margin-top:12px;color:rgba(255,255,255,.75);font-size:13px;';
+          inner.appendChild(h);
+          inner.appendChild(p);
+          inner.appendChild(tip);
+          el.appendChild(inner);
+          document.body.appendChild(el);
+        }
+
+        window.addEventListener(
+          'error',
+          function (e) {
+            try {
+              if (e && e.target && (e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK')) {
+                var url = e.target.src || e.target.href || '';
+                show('Failed to load a required file', url);
+                return;
+              }
+              show('Runtime error', (e && (e.message || (e.error && e.error.stack))) || String(e));
+            } catch (err) {
+              show('Runtime error', String(err));
+            }
+          },
+          true
+        );
+
+        window.addEventListener('unhandledrejection', function (e) {
+          try {
+            show('Unhandled promise rejection', String(e && e.reason ? e.reason : e));
+          } catch (err) {
+            show('Unhandled promise rejection', String(err));
+          }
+        });
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
