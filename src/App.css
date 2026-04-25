@@ -507,8 +507,18 @@ body::before {
 .about-left .profile-image { animation: floatTilt 6s ease-in-out infinite; will-change: transform; }
 @keyframes floatTilt {
   0% { transform: translateY(0) rotate(-0.4deg); }
-  50% { transform: translateY(-10px) rotate(0.6deg); }
+  25% { transform: translateY(-5px) rotate(0.2deg); }
+  50% { transform: translateY(0) rotate(0.6deg); }
+  75% { transform: translateY(5px) rotate(0deg); }
   100% { transform: translateY(0) rotate(-0.4deg); }
+}
+
+@media (max-width: 900px) {
+  .about-left .profile-image { animation: none; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-left .profile-image { animation: none; transform: none; }
 }
 
 .about-right h1 {
