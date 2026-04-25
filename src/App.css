@@ -508,7 +508,8 @@ body::before {
 .projects-media h2 { margin-top: 1.25rem; color: var(--gold-400); font-size: 1.05rem; }
 .video-row { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1rem; align-items: start; }
 .banner-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 0.5rem; }
-.insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-top: 0.5rem; }
+.insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.85rem; margin-top: 0.5rem; }
+.reels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 260px)); gap: 1rem; justify-content: center; margin-top: 0.5rem; }
 
 .project-item { display: flex; flex-direction: column; }
 .media { border-radius: 12px; overflow: hidden; position: relative; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 12px 30px rgba(0,0,0,0.55); display:flex; align-items:center; justify-content:center; color: rgba(255,255,255,0.9); transition: transform .25s ease, box-shadow .25s ease; }
@@ -545,28 +546,23 @@ body::before {
 .projects-container h1 { text-align: center; margin-bottom: 0.25rem; }
 .projects-container .projects-intro { text-align: center; margin: 0 auto 1rem; max-width: 70ch; color: rgba(255,255,255,0.9); }
 
-/* Make feed images respect original aspect ratio inside the insta grid */
-.insta-grid .media { aspect-ratio: auto !important; min-height: 0; height: auto; padding: 0; }
-.insta-grid .media img { width: 100%; height: auto; object-fit: contain; display: block; filter: none; }
+/* Instagram feed grid: keep everything tidy and consistent */
+.insta-grid .media { border-radius: 10px; }
+.insta-grid .media:hover { transform: translateY(-4px); }
 .insta-grid .media-caption { text-align: center; }
 
 /* overlay pointer and hide when playing */
 .media-overlay { cursor: pointer; transition: opacity .2s ease, transform .15s ease; }
 .media.playing .media-overlay { opacity: 0; transform: scale(.85); pointer-events: none; }
 
-/* Hover-to-zoom for feed images and responsive tweaks */
-.insta-grid .project-item { overflow: visible; }
-.insta-grid .media { transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms cubic-bezier(.2,.9,.2,1); transform-origin: center center; will-change: transform; border-radius: 8px; }
-.insta-grid .project-item:hover .media,
-.insta-grid .project-item:focus-within .media { transform: scale(1.08); z-index: 30; box-shadow: 0 40px 80px rgba(0,0,0,0.75); }
-.insta-grid .project-item:active .media { transform: scale(1.04); }
-
-.insta-grid .media img { border-radius: 8px; }
+/* Avoid aggressive hover zoom (it overlaps and looks messy) */
+.insta-grid .project-item { overflow: hidden; }
 
 @media (max-width: 700px) {
-  .insta-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
   .banner-row { grid-template-columns: 1fr; }
   .video-row { grid-template-columns: 1fr; }
+  .reels-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; }
 }
 
 @media (min-width: 1200px) {

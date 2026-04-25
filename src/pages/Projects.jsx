@@ -121,7 +121,7 @@ const Projects = () => {
             </div>
 
             <h2>Instagram Reels</h2>
-            <div className="video-row">
+            <div className="reels-grid">
               {instaReelFiles.map((file, i) => (
                 <figure className="project-item" key={file}>
                   <div className="media media-vertical" role="img" aria-label={`Instagram reel ${i + 1}`}>
