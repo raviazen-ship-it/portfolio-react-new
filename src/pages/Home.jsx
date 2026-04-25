@@ -14,8 +14,8 @@ const Home = () => {
       <Loader isLoading={loading} />
       <main className={!loading ? 'main-show' : ''}>
         <section className="hero">
-          <h1>Ravia Zen</h1>
-          <p>Passionate Web Developer Crafting Neon Dreams</p>
+          <h1>Ray Raharja Santoso</h1>
+          <p className="hero-subtitle">Design that speaks for itself — bold visuals, clean UX, neon energy.</p>
           <Link to="/projects" className="cta-button">Explore Projects</Link>
         </section>
       </main>

@@ -5,8 +5,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-brand">
-          <div className="logo">RAVIA ZEN</div>
-          <p className="footer-desc">Graphic designer & visual storyteller — banners, product photos, campaigns, and short videos.</p>
+          <div className="logo">RAY RAHARJA SANTOSO</div>
+          <p className="footer-desc">Design that speaks for itself — banners, product visuals, campaigns, and short-form video.</p>
         </div>
 
         <nav className="footer-nav" aria-label="Footer navigation">

@@ -306,8 +306,18 @@ main {
   background-clip: text;
   color: transparent;
   margin-bottom: 2rem;
+  line-height: 0.98;
+  max-width: 16ch;
   text-shadow: 0 0 40px rgba(218, 165, 32, 0.5);
   animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+.hero-subtitle {
+  margin: -0.75rem 0 1.5rem;
+  max-width: 60ch;
+  color: rgba(255,255,255,0.88);
+  font-size: 1.05rem;
+  line-height: 1.55;
 }
 
 @keyframes textGlow {
@@ -610,9 +620,16 @@ body::before {
 .footer-bottom { text-align:center; margin-top:1rem; color: rgba(255,255,255,0.6); }
 
 @media (max-width: 760px) {
+  .footer { padding: 1.6rem 1rem 1.2rem; }
+  .footer-container { flex-direction: column; align-items: center; text-align: center; gap: 1.25rem; }
+  .footer-desc { max-width: 46ch; }
+  .footer-nav ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; justify-items: center; }
   .footer-contact { align-items:center; }
-  .footer-nav ul { flex-wrap:wrap; justify-content:center; }
-  .footer-container { text-align:center; }
+  .footer-bottom { margin-top: 1.25rem; }
+}
+
+@media (max-width: 380px) {
+  .footer-nav ul { grid-template-columns: 1fr; }
 }
 
 /* Contact page styles */
